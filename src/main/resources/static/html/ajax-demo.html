@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+    <p>
+        <input type="button" value="发送" onclick="send();" >
+    </p>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script>
+        function send() {
+            $.post(
+<!--            访问路径-->
+                "/community/alpha/ajax",
+<!--                上传数据-->
+                {"name":"张三","age":23},
+<!--                回调函数  服务器给浏览器做出响应，浏览器得到响应，会调用该方法，把服务器返回的数据传给参数data-->
+                function(data){
+                    console.log(typeof(data));
+                    console.log(data);
+
+                    data = $.parseJSON(data);
+                    console.log(typeof(data));
+                    console.log(data.code);
+                    console.log(data.msg);
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>
